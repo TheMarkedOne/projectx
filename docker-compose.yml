@@ -1,0 +1,51 @@
+version: '3'
+services:
+  app:
+    container_name: mynest
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - projectx
+
+  rust-compressor:
+    container_name: myrust
+    build:
+      context: ./rust-compressor
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    networks:
+      - projectx
+
+  redis:
+    container_name: myredis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    networks:
+      - projectx
+
+  postgres:
+    container_name: mypostgres
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - projectx
+
+volumes:
+  redis_data:
+  postgres_data:
+
+networks:
+  projectx:
+    driver: bridge
