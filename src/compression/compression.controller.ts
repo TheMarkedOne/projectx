@@ -24,7 +24,7 @@ export class CompressionController {
     }
 	console.log("recieved request")
     try {
-      const url = 'http://172.16.10.37:3004/upload';
+      const url = 'http://172.16.10.43:3004/upload';
       const form = new FormData();
       const blob = new Blob([file.buffer], { type: file.mimetype });
 
