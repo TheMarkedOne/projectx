@@ -46,7 +46,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(middleware::Logger::default())
             .service(web::resource("/upload").route(web::post().to(compress_files)))
     })
-    .bind(("myrust", 3001))?
+    .bind(("myrust", 3004))?
     .run()
     .await
 }
