@@ -4,7 +4,7 @@ services:
     container_name: mynest
     build: .
     ports:
-      - 3000:3000
+      - 3003:3003
     volumes:
       - .:/usr/src/app
     networks:
@@ -16,7 +16,7 @@ services:
       context: ./rust-compressor
       dockerfile: Dockerfile
     ports:
-      - 3001:3001
+      - 3004:3004
     networks:
       - projectx
 
